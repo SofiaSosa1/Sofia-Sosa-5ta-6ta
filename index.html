@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ProtectoIntegrador_SosaSofia</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+
+  <body class="body">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary "data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Sofia</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="carrito.html">Carrito</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="iniciarsesion.html">Iniciar Sesion</a>
+            </li>
+           
+          </ul>
+        </div>
+      </div>
+    </nav>
+   
+  
+    <form action class="form2tienda">
+      <h2 id="producto">Nuevo producto</h2>
+      <div class="form-group">
+      <label>Nombre</label><br>
+        <input  type="name"id="nombre"class="form-control" none="name" placeholder="Ingrese Nombre">
+      </div>
+      <div class="form-group">
+        <label >Precio</label><br>
+          <input type="name"id="precio"class="form-control" none="name" placeholder="Ingrese Precio">
+        </div>
+      <br>
+      
+      <button  id="boton"type="button" class="btn btn-outline-dark" onclick="Agrego()">Enviar</button>
+    </form>
+    <h3 id="TituloProducto">Productos</h3>
+    
+    <div id="productos">
+      <div class="container-tienda"> 
+      <div class="card" style="width: 18rem;">
+        <img src="./assets/img/imagen.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre Producto</h5>
+          <p class="card-text">Precio: $1500</p>
+          <button id="añadir" type="button"onclick="Añadir()" class="btn btn-primary">Añadir al Carrito</button>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <img src="./assets/img/imagen.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre Producto</h5>
+          <p class="card-text">Precio: $2000</p>
+          <button id="añadir" type="button"onclick="Añadir()" class="btn btn-primary">Añadir al Carrito</button>
+        </div>
+      </div>
+      <br>
+      <div class="card" style="width: 18rem;">
+        <img src="./assets/img/imagen.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nombre Producto</h5>
+          <p class="card-text">Precio: $1000</p>
+          <button id="añadir" type="button"onclick="Añadir()" class="btn btn-primary">Añadir al Carrito</button>
+        </div>
+      </div>
+      <br>
+    </div>
+  
+    </div>
+
+    <script src="./assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+
+</html>
