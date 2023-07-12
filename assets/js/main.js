@@ -12,10 +12,11 @@ const Agrego=()=>{
    
     if (nombre !== "" && precio!=="" && isNaN!==(precio) && precio>0) {
     const NuevoProducto=new Producto(nombre,precio);
-    //const mostrar= `NOMBRE: ${nuevoProducto.nombre}  PRECIO: $ ${nuevoProducto.precio}<br>`;
+    //const mostrar= `NOMBRE: ${NuevoProducto.nombre}  PRECIO: $ ${NuevoProducto.precio}<br>`;
     //document.getElementById("productos").innerHTML+=mostrar
     Productos.push(NuevoProducto)
-    localStorage.setItem("productos",JSON.stringify(Productos));
+
+    localStorage.setItem("productos", JSON.stringify(Productos));
     const ProductoCard = `<div class="container-tienda"> 
     <div class="card" style="width: 18rem;">
     <img src="./assets/img/imagen.png" class="card-img-top" alt="...">
@@ -30,16 +31,41 @@ const Agrego=()=>{
     document.getElementById("nombre").value="";
     document.getElementById("precio").value="";
     document.getElementById("productos").innerHTML += ProductoCard;
-    
+ 
+   
     }
+    else{
+      alert("Revise que campos esten llenos, que en precio no ingrese letras o precios negativos ")
+    }
+  
 }
-const Compra=()=>{
+boton.onclick=()=>{Agrego()}
+
+ /*const Eliminar=()=>{
+  
+  }
+  boton.onclick=()=>{Eliminar()}*/
+ 
+  
+  function IniciarSesion(){
+    const usuario=document.getElementById("usuario").value;
+    const contraseña=document.getElementById("contraseña").value;
+
+    if (usuario !== "" && contraseña!=="") {
+
+    document.getElementById("usuario").value="";
+    document.getElementById("contraseña").value="";
+
+    }
+ }
+ 
+  IniciarSesion()
+  
+function Añadir(){
+  
+}
+Añadir()
+function Compra(){
   alert("¡Gracias por su compra!")
  }
-  boton.onclick=()=>{Compra()}
-const Añadir=()=>{
-
- }
-  boton.onclick=()=>{Añadir()}
-  boton.onclick=()=>{Agrego()}
-
+ Compra()
