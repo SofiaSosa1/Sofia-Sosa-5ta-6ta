@@ -6,7 +6,6 @@ class Producto {
 }
 
 function tiendaForm() {
-
     let nombre = document.getElementById("nombre").value.toUpperCase();
     let precio = document.getElementById("precio").value;
 
@@ -15,17 +14,15 @@ function tiendaForm() {
     } else {
         alert("Revise si en campos estan vacios,si en precio hay letras o si hay numeros negativos")
     }
-
 }
 
 let cont = 0;
-
+let listaProd = [];
 function card() {
-    let listaProd;
-
+   
     if (localStorage.getItem("productos") == null) {
-        listaProd = [{ nombre: "REMERA", precio: 2000 }, { nombre: "CAMPERA", precio: 15000 }, { nombre: "PANTALON", precio: 3000 }, ];
-        localStorage.setItem("productos", JSON.stringify(listaProd));
+        listaProd=[ {nombre: "REMERA", precio: 2000 }, { nombre: "CAMPERA", precio: 15000 }, { nombre: "PANTALON", precio: 3000 }, ];
+        getProdu();
     } else {
         listaProd = JSON.parse(localStorage.getItem("productos"));
     }
@@ -38,18 +35,18 @@ function card() {
       <div class="card-body">
       <h5 class="card-title">${producto.nombre}</h5>
       <p class="card-text">$ ${producto.precio}</p>
-      <button id="bAñadir${index}" id="boton"type="button" class="btn btn-primary" >Añadir Carrito</button>
+      <button id="bAñadir${index}" type="button" class="btn btn-primary" >Añadir Carrito</button>
       </div>
       </div>`;
         cont = index
     });
 
     cartasProdu.innerHTML = mostrarCarta;
-    let produAñadidos;
+    let Carrito;
     if (localStorage.getItem("carrito") == null) {
-        produAñadidos = [];
+        Carrito = [];
     } else {
-        produAñadidos = JSON.parse(localStorage.getItem("carrito"));
+        Carrito = JSON.parse(localStorage.getItem("carrito"));
     }
 
     for (let i = 0; i < cont + 1; i++) {
@@ -58,46 +55,44 @@ function card() {
             e.preventDefault()
             listaProd = JSON.parse(localStorage.getItem("productos"));
             let producto = new Producto(listaProd[i].nombre, listaProd[i].precio);
-            produAñadidos.push(producto);
-            localStorage.setItem("carrito", JSON.stringify(produAñadidos));
+            Carrito .push(producto);
+            localStorage.setItem("carrito", JSON.stringify(Carrito));
         }
     }
 }
 
 document.onload = card();
-if (localStorage.getItem("administrador") == "Eres el administrador") {
-    let formProductos = "";
-    formProductos += ` <div  id="formAdmin">
-    <form id="productForm"action class="form2tienda">
-      <h2 id="producto">Nuevo producto</h2>
-      <div class="form-group">
-      <label>Nombre</label><br>
-        <input  type="name"id="nombre"class="form-control" none="name" placeholder="Ingrese Nombre">
-      </div>
-      <div class="form-group">
-        <label >Precio</label><br>
-          <input type="name"id="precio"class="form-control" none="name" placeholder="Ingrese Precio">
-        </div>
-      <br>
-      <button  id="boton" type="submit" class="btn btn-outline-dark" >Enviar</button>
-    </form>
-    </div>`;
 
+if (localStorage.getItem("administrador") == "Eres el administrador") {
     const FormAdmin = document.getElementById("formularioAdmin")
     const BotonCerrar = document.getElementById("CerrarSesion");
+    let formProd = "";
+    formProd += ` <div  id="formAdmin">
+        <form id="productForm"action class="form2tienda">
+        <h2 id="producto">Nuevo producto</h2>
+        <div class="form-group">
+        <label>Nombre</label><br>
+            <input  type="name"id="nombre"class="form-control" none="name" placeholder="Ingrese Nombre">
+        </div>
+        <div class="form-group">
+            <label >Precio</label><br>
+            <input type="name"id="precio"class="form-control" none="name" placeholder="Ingrese Precio">
+            </div>
+        <br>
+        <button  id="boton" type="submit" class="btn btn-outline-dark" >Enviar</button>
+        </form>
+        </div>`;
+
     let bCerrarSesion = "";
-    FormAdmin.innerHTML = formProductos;
+    FormAdmin.innerHTML = formProd;
     bCerrarSesion += '<button type="button" id="botonCerrarSesion"  class="btn btn-secondary">Cerrar Sesión</button>';
     BotonCerrar.innerHTML = bCerrarSesion;
 }
 
 function agregar() {
     if (tiendaForm() == true) {
-
         let nombre = document.getElementById("nombre").value.toUpperCase();
         let precio = document.getElementById("precio").value;
-
-        let listaProd;
 
         if (localStorage.getItem("productos") == null) {
             listaProd = [{ nombre: "REMERA", precio: 2000 }, { nombre: "CAMPERA", precio: 15000 }, { nombre: "PANTALON", precio: 3000 }, ];
@@ -111,9 +106,7 @@ function agregar() {
         card();
         document.getElementById("nombre").value = "";
         document.getElementById("precio").value = "";
-
     }
-
 }
 async function getProdu(){
     try{
@@ -122,23 +115,27 @@ async function getProdu(){
         response= await response.json()
         response.forEach((producto,index) => {
             api.innerHTML+=`
-            <div class="card" id="producto" ${index} style="width: 18rem;">
-      <img src="${producto.image}" class="card-img-top" alt="...">
-      <div class="card-body">
-      <h5 class="card-title-api">${producto.title.toUpperCase()}</h5>
-      <p class="card-text-price">$ ${producto.price}</p>
-      <button id="bAñadir"${index} id="boton"type="button" class="btn btn-primary" >Añadir Carrito</button>
-      </div>
-      </div>`
+            <div class="card" id="producto${index}"  style="width: 18rem;">
+        <img src="${producto.image}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title-api">${producto.title.toUpperCase()}</h5>
+        <p class="card-text-price">$ ${producto.price}</p>
+        <button id="bAñadir${index}" type="button" class="btn btn-primary" >Añadir Carrito</button>
+        </div>
+        </div>`
       cont = index
-    
+    let ListaApi={
+        nombre:producto.title,
+        precio:producto.price,
+    }
+    listaProd.push(ListaApi)
+    localStorage.setItem("productos",JSON.stringify(listaProd))
         });
+       
     }catch(error){
         console.log(error);
     }
 }
-
-  getProdu();
 
 let boton = document.getElementById("boton");
 
@@ -158,5 +155,3 @@ BotonCerrar.onclick = (e) => {
     document.getElementById("CerrarSesion").removeChild(BotonCerrar);
     localStorage.setItem("administrador", noAdministrador);
 }
-
-

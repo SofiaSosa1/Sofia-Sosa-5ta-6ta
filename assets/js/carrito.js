@@ -6,13 +6,13 @@ if (localStorage.getItem("carrito") == null) {
     document.getElementById("botonesCarrito").removeChild(bVaciar);
 }
 
-let produAñadidos = [];
+let Carrito = [];
 
 function card() {
-    produAñadidos = JSON.parse(localStorage.getItem("carrito"));
+    Carrito = JSON.parse(localStorage.getItem("carrito"));
     let mostrarCarta = "";
     const cartasProdu = document.getElementById("carrito");
-    produAñadidos.forEach((producto, index) => {
+    Carrito.forEach((producto, index) => {
         mostrarCarta += `<div class="card" id="producto${index}" style="width: 18rem;">
             <img src="./assets/img/imagen.png" class="card-img-top" alt="...">
             <div class="card-body">
